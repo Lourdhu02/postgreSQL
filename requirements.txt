@@ -1,0 +1,22 @@
+# Postgres drivers
+psycopg[binary]>=3.2,<4
+asyncpg>=0.29,<1
+
+# ORM &amp; migrations
+SQLAlchemy>=2.0,<3
+alembic>=1.13,<2
+
+# Vector store (Module 12 capstone)
+pgvector>=0.3,<1
+
+# Utilities
+python-dotenv>=1.0
+pandas>=2.2
+rich>=13.7
+
+# Notebooks
+jupyter>=1.0
+ipykernel>=6.29
+
+# Capstone embeddings (CPU-friendly default)
+sentence-transformers>=3.0

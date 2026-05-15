@@ -1,0 +1,24 @@
+{
+  "//": "Copy this file to .vscode/settings.json (gitignored). Replace password with the value from your .env.",
+  "sqltools.connections": [
+    {
+      "name": "pgcourse (local)",
+      "driver": "PostgreSQL",
+      "server": "localhost",
+      "port": 5432,
+      "database": "pgcourse",
+      "username": "postgres",
+      "password": "change_me",
+      "previewLimit": 50
+    }
+  ],
+  "sqltools.useNodeRuntime": true,
+  "files.associations": {
+    "*.sql": "sql"
+  },
+  "[sql]": {
+    "editor.tabSize": 2,
+    "editor.formatOnSave": false
+  },
+  "jupyter.notebookFileRoot": "${workspaceFolder}"
+}

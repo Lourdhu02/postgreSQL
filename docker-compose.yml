@@ -1,0 +1,40 @@
+# Optional: alternative to a native Postgres install.
+# Module 00 walks through a native install for Windows; this file exists
+# so you can switch to a containerized setup with one command:
+#   docker compose up -d
+#
+# Postgres data is persisted to ./pgdata (gitignored).
+# pgAdmin is available at http://localhost:5050 after startup.
+services:
+  postgres:
+    image: postgres:17
+    container_name: pgcourse-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${PGUSER:-postgres}
+      POSTGRES_PASSWORD: ${PGPASSWORD:-change_me}
+      POSTGRES_DB: ${PGDATABASE:-pgcourse}
+    ports:
+      - "${PGPORT:-5432}:5432"
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+      - ./seed:/seed:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${PGUSER:-postgres} -d ${PGDATABASE:-pgcourse}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgcourse-pgadmin
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: change_me
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+    ports:
+      - "5050:80"
+    depends_on:
+      postgres:
+        condition: service_healthy
