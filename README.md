@@ -105,3 +105,6 @@ Each module folder contains a `README.md` (the lesson), a `lab.sql` (runnable de
 ## License
 
 [MIT](./LICENSE)
+
+## PostgreSQL
+Queries, optimization, administration
